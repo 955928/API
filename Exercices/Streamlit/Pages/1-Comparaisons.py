@@ -4,6 +4,7 @@ import plotly.express as px
 
 iris_df = pd.read_csv('iris_data.csv')
 
+#Make Page
 st.set_page_config(page_title='Iris Dataset')
 st.header('Comparaison - Iris Dataset')
 st.markdown('Explore the variables  to understand between them and how they release to the species.')
