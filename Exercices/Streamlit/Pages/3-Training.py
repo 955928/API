@@ -35,7 +35,7 @@ else:
     
     #Vérifier si la requêtea réussi (statut 200)
     if response.status_code == 200:
-        message = response.json()['Response']
+        message = response.json()['message']
         st.success(f'API welcome message: {message}')
     
     else:
