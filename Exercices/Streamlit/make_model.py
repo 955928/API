@@ -32,7 +32,7 @@ y = iris_df['species_encoded'].copy()
 x = iris_df.drop(['species', 'species_encoded'], axis=1)
 
 # Separate TrainSet / ValidSet
-x_train, x_valid, y_train, y_valid = train_test_split(x, y, train_size=0.8)
+x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.8)
 
 # Train model
 model = XGBClassifier()
@@ -44,5 +44,5 @@ with open('main_model.pkl', 'wb') as fichier_modele:
     
     
 # Test model
-predictions = model.predict(x_valid)
-print(f"MAE: {str(mean_absolute_error(predictions, y_valid))}")
+predictions = model.predict(x_test)
+print(f"MAE: {str(mean_absolute_error(predictions, y_test))}")

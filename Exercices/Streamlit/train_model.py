@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error
- #from xgboost import XGBClassifier
+#from xgboost import XGBClassifier
 import csv
 import json
 import pickle
@@ -30,5 +30,24 @@ def make_model_save():
         json.dump(dict_encoder, write_file, indent=4)
     print(iris_df.head(15))
     
+    # Separate Features and Target : x and y datas
+    y = iris_df['species_encoded'].copy()
+    x = iris_df.drop(['species', 'species_encoded'], axis=1)
+    
+    # Separate TrainSet / ValidSet
+    x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.8)
+    
+    # Train model
+    model = RandomForestClassifier(max_depth=2, random_state=0)
+    model.fit(x_train, y_train)
+    
+    # Save model
+    with open('main_model.pkl', 'wb') as fichier_modele:
+        pickle.dump(model, fichier_modele)
+        
+        
+    # Test model
+    predictions = model.predict(x_test)
+    print(f"MAE: {str(mean_absolute_error(predictions, y_test))}")
 
     
