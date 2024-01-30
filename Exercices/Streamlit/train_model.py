@@ -28,16 +28,7 @@ def make_model_save():
         
     with open('encoder.json', 'w') as write_file:
         json.dump(dict_encoder, write_file, indent=4)
-    #print(iris_df.head(15))
+    print(iris_df.head(15))
     
-    #Separate Target and Feature: x and y datas
-    y = iris_df['species_encoded'].copy()
-    x = iris_df.drop(['species', 'species_encoded'], axis=1)
-    
-    #Separate TrainSet / TestSet
-    x_train, x_valid, y_train, y_valid = train_test_split(x,y, train_size=0.8)
-    
-    #Train Model and Save
-    model = XGBClassifier()
-    model.fit(x_train, y_train)
+
     
