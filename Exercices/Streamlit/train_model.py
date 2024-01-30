@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error
-from xgboost import XGBClassifier
+ #from xgboost import XGBClassifier
 import csv
 import json
 import pickle
@@ -18,5 +18,26 @@ def make_model_save():
     label_encoder = LabelEncoder()
     iris_df['species_encoded'] = label_encoder.fit_transform(iris_df['species'])
 
-
-    print(iris_df.head(15))
+    #Save processed data to new file and json
+    iris_df.to_csv('encoded_data_csv')
+    options_title = iris_df['species'].unique()
+    dict_encoder = {}
+    
+    for item in options_title:
+        dict_encoder[str(iris_df[iris_df['species'] == item].iloc[0]['species_encoded'])] = item
+        
+    with open('encoder.json', 'w') as write_file:
+        json.dump(dict_encoder, write_file, indent=4)
+    #print(iris_df.head(15))
+    
+    #Separate Target and Feature: x and y datas
+    y = iris_df['species_encoded'].copy()
+    x = iris_df.drop(['species', 'species_encoded'], axis=1)
+    
+    #Separate TrainSet / TestSet
+    x_train, x_valid, y_train, y_valid = train_test_split(x,y, train_size=0.8)
+    
+    #Train Model and Save
+    model = XGBClassifier()
+    model.fit(x_train, y_train)
+    

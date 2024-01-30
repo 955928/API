@@ -13,6 +13,6 @@ def read_root():
 @app.get('/train_model')
 def train_model():
     make_model_save()#en appelalnt du fichier Front
-    print('Training in progress')
+    print('Training in progress')#pritn s'affich sur le serveur de back
     return{'Response': 'Training completed'}
 
