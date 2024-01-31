@@ -1,4 +1,4 @@
-import json
+import json as js
 import pickle as pk
 
 def make_prediction(x):
@@ -9,3 +9,16 @@ def make_prediction(x):
     
     #faire la prédiction
     predictions_out =  loaded_model.predict(x)
+    
+    print('Predictions', predictions_string)
+    
+    
+    #charger le fichier encoder pour traduire la prédiction
+    with open('encoder.json') as json_file:
+        data = js.load(json_file)
+        
+    #conversion prédiction brute --> traduite
+    predictions_string = data[str(int(predictions_out))]
+    
+    #Retourne la valeur
+    return predictions_string
