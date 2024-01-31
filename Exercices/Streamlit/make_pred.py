@@ -8,10 +8,7 @@ def make_prediction(x):
     
     
     #faire la prédiction
-    predictions_out =  loaded_model.predict(x)
-    
-    print('Predictions', predictions_string)
-    
+    predictions_out = loaded_model.predict(x)
     
     #charger le fichier encoder pour traduire la prédiction
     with open('encoder.json') as json_file:
@@ -19,6 +16,8 @@ def make_prediction(x):
         
     #conversion prédiction brute --> traduite
     predictions_string = data[str(int(predictions_out))]
+    
+    print('Predictions', predictions_string)
     
     #Retourne la valeur
     return predictions_string

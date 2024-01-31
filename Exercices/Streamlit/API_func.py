@@ -18,7 +18,7 @@ def train_model():
     print('Training in progress')#pritn s'affich sur le serveur de back
     return{'Response': 'Training completed'}
 
-@app.get('/(x1)/(x2)/(x3)/(x4)/(species)')
+@app.get('/{x1}/{x2}/{x3}/{x4}')
 def get_pred(x1: float, x2: float, x3: float, x4: float):
     p1 = [x1, x2, x3, x4]
     x = np.array([p1])
@@ -28,4 +28,4 @@ def get_pred(x1: float, x2: float, x3: float, x4: float):
     
     print(prediction)
     
-    return {"prediction": prediction}
+    return {'prediction': prediction}
