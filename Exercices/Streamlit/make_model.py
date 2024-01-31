@@ -38,11 +38,7 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.8)
 model = XGBClassifier()
 model.fit(x_train, y_train)
 
-# Save model
-with open('main_model.pkl', 'wb') as fichier_modele:
-    pickle.dump(model, fichier_modele)
-    
-    
-# Test model
-predictions = model.predict(x_test)
-print(f"MAE: {str(mean_absolute_error(predictions, y_test))}")
+
+
+
+
