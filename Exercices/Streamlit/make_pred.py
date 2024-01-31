@@ -6,3 +6,6 @@ def make_prediction(x):
     with open('main_model.pkl', 'rb') as fichier_modele:
         loaded_model = pk.load(fichier_modele)
     
+    
+    #faire la prédiction
+    predictions_out =  loaded_model.predict(x)
