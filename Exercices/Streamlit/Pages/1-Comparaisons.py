@@ -47,7 +47,7 @@ elif options == 'Sepal Length Vs Petal Width':
                 y='petal_width',
                 color='species',
                 title=options)
-elif options == 'Sepal Width Vs Petal Length':
+elif options == 'Sepal Length Vs Petal Length':
         # st.markdown('option 4')
         plot = px.scatter(
                 iris_df,

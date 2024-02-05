@@ -38,11 +38,11 @@
 # model = XGBClassifier()
 # model.fit(x_train, y_train)
 
-# # Save model
-# with open('main_model.pkl', 'wb') as fichier_modele:
-#     pickle.dump(model, fichier_modele)
+# Save model
+with open('main_model.pkl', 'wb') as fichier_modele:
+    pickle.dump(model, fichier_modele)
     
     
-# # Test model
-# predictions = model.predict(x_test)
-# print(f"MAE: {str(mean_absolute_error(predictions, y_test))}")
+# Test model
+predictions = model.predict(x_test)
+print(f"MAE: {str(mean_absolute_error(predictions, y_test))}")
